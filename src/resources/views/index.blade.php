@@ -24,94 +24,163 @@
 </div>
 @endif
 
-<div class="contact__content">
-    <div class="section__title">
-        <h2>新規作成</h2>
+<div class="contact-form__content">
+    <div class="contact-form__title">
+        <h2>Contact</h2>
     </div>
-    <form class="create-form" action="/contacts" method="post" enctype="multipart/form-data">
+    <form class="form" action="/confirm" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="create-form__item">
-            <input
-                class="create-form__item-input"
-                type="text"
-                name="content"
-                value="{{ old('content') }}" />
-            <select class="create-form__item-select" name="category_id">
-                <option value="">カテゴリ</option>
-                @foreach($categories as $category)
-                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                @endforeach
-            </select>
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">お名前</span>
+                <span class="form__label--required">※</span>
+            </div>
+            <div class="form__group-content">
+                <div class="form__input--text">
+                    <input type="text"
+                        name="last_name"
+                        placeholder="例: 山田"
+                        value="{{ old('last_name') }}" />
+                </div>
+                <div class="form__input--text">
+                    <input type="text"
+                        name="first_name"
+                        placeholder="例: 太郎"
+                        value="{{ old('first_name') }}" />
+                </div>
+                <div class="form__error">
+                    <!--バリデーション機能を実装したら記述します。-->
+                </div>
+            </div>
+        </div>
 
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">性別</span>
+                <span class="form__label--required">※</span>
+            </div>
+
+            <div class="form__group-content">
+                <label><input type="radio" name="gender" value="1" {{ old('gender') == 1 ? 'checked' : '' }}> 男性</label>
+                <label><input type="radio" name="gender" value="2" {{ old('gender') == 2 ? 'checked' : '' }}> 女性</label>
+                <label><input type="radio" name="gender" value="3" {{ old('gender') == 3 ? 'checked' : '' }}> その他</label>
+            </div>
         </div>
-        <div class="create-form__button">
-            <button class="create-form__button-submit" type="submit">作成</button>
+
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">メールアドレス</span>
+                <span class="form__label--required">※</span>
+            </div>
+
+            <div class="form__group-content">
+                <div class="form__input--text">
+                    <input type="email"
+                        name="email"
+                        placeholder="例: test@example.com"
+                        value="{{ old('email') }}" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">電話番号</span>
+                <span class="form__label--required">※</span>
+            </div>
+
+            <div class="form__group-content">
+                <div class="form__input--text">
+                    <input type="text"
+                        name="tel1"
+                        maxlength="5"
+                        placeholder="080"
+                        value="{{ old('tel1') }}" />
+                    -
+                    <input type="text"
+                        name="tel2"
+                        maxlength="4"
+                        placeholder="1234"
+                        value="{{ old('tel2') }}" />
+                    -
+                    <input type="text"
+                        name="tel3"
+                        maxlength="4"
+                        placeholder="5678"
+                        value="{{ old('tel3') }}" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">住所</span>
+                <span class="form__label--required">※</span>
+            </div>
+
+            <div class="form__group-content">
+                <div class="form__input--text">
+                    <input type="text"
+                        name="address"
+                        placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3"
+                        value="{{ old('address') }}" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">建物名</span>
+            </div>
+
+            <div class="form__group-content">
+                <div class="form__input--text">
+                    <input type="text"
+                        name="building"
+                        placeholder="例: 千駄ヶ谷マンション101"
+                        value="{{ old('building') }}" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">お問い合わせの種類</span>
+                <span class="form__label--required">※</span>
+            </div>
+
+            <div class="form__group-content">
+                <div class="form__input--select">
+                    <select name="category_id">
+                        <option value="">選択してください</option>
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"
+                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                            {{ $category->content }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group-title">
+                <span class="form__label--item">お問い合わせ内容</span>
+                <span class="form__label--required">※</span>
+            </div>
+
+            <div class="form__group-content">
+                <div class="form__input--textarea">
+                    <textarea name="detail" rows="5"
+                        placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form__button">
+            <button class="contact-form__button-submit" type="submit">確認画面</button>
         </div>
     </form>
-    <div class="section__title">
-        <h2>contact検索</h2>
-    </div>
-    <form class="search-form" action="/contacts/search" method="get">
-        @csrf
-        <div class="search-form__item">
-            <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}">
-            <select class="search-form__item-select" name="category_id">
-                <option value="">カテゴリ</option>
-                @foreach($categories as $category)
-                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="search-form__button">
-            <button class="search-form__button-submit" type="submit">検索</button>
-        </div>
-    </form>
-    <div class="contact-table">
-        <table class="contact-table__inner">
-            <tr class="contact-table__row">
-                <th class="contact-table__header">
-                    <span class="contact-table__header-span">contact</span>
-                    <span class="contact-table__header-span">カテゴリ</span>
-                </th>
-            </tr>
-            @foreach($contacts as $contact)
-            <tr class="contact-table__row">
-                <td class="contact-table__item">
-                    <form class="update-form" action="/contacts/update" method="post">
-                        @method('PATCH')
-                        @csrf
-                        <div class="update-form__item">
-                            <input class="update-form__item-input" typy="text" name="content" value="{{ $contact['content'] }}">
-                            <input type="hidden" name="id" value="{{ $contact['id'] }}">
-                        </div>
-                        <div class="update-form__item">
-                            <p class="update-form__item-p">{{ $contact['category']['name'] }}</p>
-                        </div>
-                        <div class="update-form__button">
-                            @if($user_id === $contact['user_id'])
-                            <button class="update-form__button-submit" type="submit">更新</button>
-                            @endif
-                        </div>
-                    </form>
-                </td>
-                <td class="contact-table__item">
-                    <form class="delete-form" action="/contacts/delete" method="post">
-                        @method('DELETE')
-                        @csrf
-                        <div class="delete-form__button">
-                            @if($user_id === $contact['user_id'])
-                            <input type="hidden" name="id" value="{{ $contact['id'] }}">
-                            <button class="delete-form__button-submit" type="submit">削除</button>
-                            @endif
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </table>
-    </div>
-</div>
-<div class="pagination">
-    {{ $contacts->withQueryString()->links() }}
-</div>
+
 @endsection
