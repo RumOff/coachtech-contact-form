@@ -8,13 +8,15 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categories = Category::all();
         
         return view('index', compact('categories'));
     }
 
-    public function confirm(Request $request){
+    public function confirm(Request $request)
+    {
         $category = Category::find($request->category_id);
         $contact = $request->only([
             'last_name',
@@ -33,7 +35,8 @@ class ContactController extends Controller
         return view('confirm', compact('category', 'contact'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         if ($request->action === 'back') {
             return redirect('/contact')->withInput();
         }

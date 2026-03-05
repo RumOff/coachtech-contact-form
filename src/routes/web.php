@@ -10,5 +10,8 @@ Route::post('/confirm/store', [ContactController::class, 'store']);
 Route::get('/thanks', [ContactController::class, 'thanks']);
 
 // admin
-Route::get('/admin', [AdminController::class, 'index']);
-Route::get('/search', [AdminController::class, 'search']);
+Route::middleware('auth')->group(function() {
+    Route::get('/admin', [AdminController::class, 'index']);
+    Route::get('/search', [AdminController::class, 'search']);
+    Route::post('/logout', [AdminController::class, 'logout']);
+});
