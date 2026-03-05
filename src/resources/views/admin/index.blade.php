@@ -1,1 +1,140 @@
-admin
+@extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
+
+@section('content')
+
+@if(session('message'))
+<div class="contact__alert">
+    <div class="contact__alert--success">
+        {{ session('message')}}
+    </div>
+</div>
+@endif
+
+@if($errors->any())
+<div class="contact__alert--danger">
+    <ul>
+        @foreach($errors->all() as $error )
+        <li> {{ $error }} </li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+<div class="admin__content">
+    <div class="admin__title">
+        <h2>Admin</h2>
+    </div>
+
+    <form class="search-form" action="/admin" method="get" enctype="multipart/form-data">
+        <div class="search-form__group">
+
+            <div class="search-form__item">
+                <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください">
+            </div>
+
+            <div class="search-form__item">
+                <select name="gender">
+                    <option value="">性別</option>
+                    <option value="1">男性</option>
+                    <option value="2">女性</option>
+                    <option value="3">その他</option>
+                </select>
+            </div>
+
+            <div class="search-form__item">
+                <select name="category_id">
+                    <option value="">お問い合わせの種類</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">
+                        {{ $category->content }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="search-form__item">
+                <input type="date" name="date">
+            </div>
+
+            <div class="search-form__button">
+                <button type="submit" class="search-form__button-submit">
+                    検索
+                </button>
+
+                <a href="/admin" class="search-form__button-reset">
+                    リセット
+                </a>
+            </div>
+
+        </div>
+
+    </form>
+
+    <div class="admin__utility">
+
+        <div class="admin__export">
+            <a href="/admin/export" class="admin__export-button">
+                エクスポート
+            </a>
+        </div>
+
+        <div class="admin__pagination">
+            {{ $contacts->links() }}
+        </div>
+
+    </div>
+
+    <div class="admin-table">
+
+        <table class="admin-table__inner">
+
+            <tr class="admin-table__row">
+                <th>お名前</th>
+                <th>性別</th>
+                <th>メールアドレス</th>
+                <th>お問い合わせの種類</th>
+                <th></th>
+            </tr>
+
+            @foreach($contacts as $contact)
+
+            <tr class="admin-table__row">
+
+                <td>
+                    {{ $contact->last_name }} {{ $contact->first_name }}
+                </td>
+
+                <td>
+                    @if($contact->gender == 1)
+                    男性
+                    @elseif($contact->gender == 2)
+                    女性
+                    @else
+                    その他
+                    @endif
+                </td>
+
+                <td>
+                    {{ $contact->email }}
+                </td>
+
+                <td>
+                    {{ $contact->category->content }}
+                </td>
+
+                <td>
+                    <a href="/admin/{{ $contact->id }}" class="admin-table__detail">
+                        詳細
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </table>
+    </div>
+</div>
+
+@endsection
