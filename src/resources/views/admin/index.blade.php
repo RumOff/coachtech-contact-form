@@ -69,9 +69,7 @@
                     リセット
                 </a>
             </div>
-
         </div>
-
     </form>
 
     <div class="admin__utility">
@@ -101,37 +99,63 @@
             </tr>
 
             @foreach($contacts as $contact)
+                <tr class="admin-table__row">
 
-            <tr class="admin-table__row">
+                    <td>
+                        {{ $contact->last_name }} {{ $contact->first_name }}
+                    </td>
 
-                <td>
-                    {{ $contact->last_name }} {{ $contact->first_name }}
-                </td>
+                    <td>
+                        @if($contact->gender == 1)
+                            男性
+                        @elseif($contact->gender == 2)
+                            女性
+                        @else
+                            その他
+                        @endif
+                    </td>
 
-                <td>
-                    @if($contact->gender == 1)
-                    男性
-                    @elseif($contact->gender == 2)
-                    女性
-                    @else
-                    その他
-                    @endif
-                </td>
+                    <td>
+                        {{ $contact->email }}
+                    </td>
 
-                <td>
-                    {{ $contact->email }}
-                </td>
+                    <td>
+                        {{ $contact->category->content }}
+                    </td>
 
-                <td>
-                    {{ $contact->category->content }}
-                </td>
+                    <td>
+                        <a href="/admin?keyword={{ request('keyword') }}&modal={{ $contact->id }}" class="admin-table__detail">
+                            詳細
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
 
-                <td>
-                    <a href="/admin/{{ $contact->id }}" class="admin-table__detail">
-                        詳細
-                    </a>
-                </td>
-            </tr>
+            @foreach ($contacts as $contact)
+                @if(request('modal') == $contact->id)
+                <div class="modal">
+                    <div class="modal-content">
+
+                        <p>名前</p>
+                        <p>{{ $contact->last_name }} {{ $contact->first_name }}</p>
+
+                        <p>メール</p>
+                        <p>{{ $contact->email }}</p>
+
+                        <p>お問い合わせ内容</p>
+                        <p>{{ $contact->detail }}</p>
+
+                        <form action="/delete/{{ $contact->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button>削除</button>
+                        </form>
+
+                        <a href="/admin">閉じる</a>
+
+                    </div>
+                </div>
+                @endif
             @endforeach
         </table>
     </div>
