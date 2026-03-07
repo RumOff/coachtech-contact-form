@@ -33,7 +33,11 @@
         <div class="search-form__group">
 
             <div class="search-form__item">
-                <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください">
+                <input
+                    type="text"
+                    name="keyword" p
+                    laceholder="名前やメールアドレスを入力してください"
+                    value="{{ request('keyword') }}">
             </div>
 
             <div class="search-form__item">
@@ -50,6 +54,7 @@
                     <option value="">お問い合わせの種類</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">
+                        {{ request('category_id') == $category->id ? 'selected' : '' }}>
                         {{ $category->content }}
                     </option>
                     @endforeach
@@ -74,11 +79,19 @@
 
     <div class="admin__utility">
 
-        <div class="admin__export">
-            <a href="/admin/export" class="admin__export-button">
-                エクスポート
-            </a>
-        </div>
+        <form class="admin__export" action="/export" method="get">
+            <div class="admin__export">
+
+                <input type="hidden" name="name" value="{{ request('last_name') }} . {{ 'first_name' }}">
+                <input type="hidden" name="gender" value="{{ request('gender') }}">
+                <input type="hidden" name="mail" value="{{ request('mail') }}">
+                <input type="hidden" name="category_id" value="{{ request('category_id') }}">
+                <input type="hidden" name="date" value="{{ request('date') }}">
+
+                <button type="submit" class="admin__button-export">エクスポート</button>
+            </div>
+
+        </form>
 
         <div class="admin__pagination">
             {{ $contacts->appends(request()->query())->links() }}
@@ -99,64 +112,64 @@
             </tr>
 
             @foreach($contacts as $contact)
-                <tr class="admin-table__row">
+            <tr class="admin-table__row">
 
-                    <td>
-                        {{ $contact->last_name }} {{ $contact->first_name }}
-                    </td>
+                <td>
+                    {{ $contact->last_name }} {{ $contact->first_name }}
+                </td>
 
-                    <td>
-                        @if($contact->gender == 1)
-                            男性
-                        @elseif($contact->gender == 2)
-                            女性
-                        @else
-                            その他
-                        @endif
-                    </td>
+                <td>
+                    @if($contact->gender == 1)
+                    男性
+                    @elseif($contact->gender == 2)
+                    女性
+                    @else
+                    その他
+                    @endif
+                </td>
 
-                    <td>
-                        {{ $contact->email }}
-                    </td>
+                <td>
+                    {{ $contact->email }}
+                </td>
 
-                    <td>
-                        {{ $contact->category->content }}
-                    </td>
+                <td>
+                    {{ $contact->category->content }}
+                </td>
 
-                    <td>
-                        <a href="/admin?keyword={{ request('keyword') }}&modal={{ $contact->id }}" class="admin-table__detail">
-                            詳細
-                        </a>
-                    </td>
-                </tr>
+                <td>
+                    <a href="/admin?keyword={{ request('keyword') }}&modal={{ $contact->id }}" class="admin-table__detail">
+                        詳細
+                    </a>
+                </td>
+            </tr>
             @endforeach
 
             @foreach ($contacts as $contact)
-                @if(request('modal') == $contact->id)
-                <div class="modal">
-                    <div class="modal-content">
+            @if(request('modal') == $contact->id)
+            <div class="modal">
+                <div class="modal-content">
 
-                        <p>名前</p>
-                        <p>{{ $contact->last_name }} {{ $contact->first_name }}</p>
+                    <p>名前</p>
+                    <p>{{ $contact->last_name }} {{ $contact->first_name }}</p>
 
-                        <p>メール</p>
-                        <p>{{ $contact->email }}</p>
+                    <p>メール</p>
+                    <p>{{ $contact->email }}</p>
 
-                        <p>お問い合わせ内容</p>
-                        <p>{{ $contact->detail }}</p>
+                    <p>お問い合わせ内容</p>
+                    <p>{{ $contact->detail }}</p>
 
-                        <form action="/delete/{{ $contact->id }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <input type="hidden" name="keyword" value="{{ request('keyword') }}">
-                            <button>削除</button>
-                        </form>
+                    <form action="/delete/{{ $contact->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+                        <button>削除</button>
+                    </form>
 
-                        <a href="/admin">閉じる</a>
+                    <a href="/admin">閉じる</a>
 
-                    </div>
                 </div>
-                @endif
+            </div>
+            @endif
             @endforeach
         </table>
     </div>

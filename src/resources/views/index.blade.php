@@ -41,6 +41,7 @@
                         name="last_name"
                         placeholder="例: 山田"
                         value="{{ old('last_name') }}" />
+
                 </div>
                 <div class="form__input--text">
                     <input type="text"
@@ -49,7 +50,9 @@
                         value="{{ old('first_name') }}" />
                 </div>
                 <div class="form__error">
-                    <!--バリデーション機能を実装したら記述します。-->
+                    @error('tel')
+                    <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -64,6 +67,10 @@
                 <label><input type="radio" name="gender" value="1" {{ old('gender') == 1 ? 'checked' : '' }}> 男性</label>
                 <label><input type="radio" name="gender" value="2" {{ old('gender') == 2 ? 'checked' : '' }}> 女性</label>
                 <label><input type="radio" name="gender" value="3" {{ old('gender') == 3 ? 'checked' : '' }}> その他</label>
+
+                @error('gender')
+                <p class="form__error">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 
