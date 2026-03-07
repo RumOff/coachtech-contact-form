@@ -15,4 +15,11 @@ class AdminController extends Controller
         
         return view('admin.index', compact('categories', 'contacts'));
     }
+
+    public function destroy(Request $request, $id)
+    {
+        Contact::findOrFail($id)->delete();
+
+        return redirect('/admin?keyword=' . $request->keyword);
+    }
 }

@@ -81,7 +81,7 @@
         </div>
 
         <div class="admin__pagination">
-            {{ $contacts->links() }}
+            {{ $contacts->appends(request()->query())->links() }}
         </div>
 
     </div>
@@ -148,6 +148,7 @@
                         <form action="/delete/{{ $contact->id }}" method="post">
                             @csrf
                             @method('DELETE')
+                            <input type="hidden" name="keyword" value="{{ request('keyword') }}">
                             <button>削除</button>
                         </form>
 
