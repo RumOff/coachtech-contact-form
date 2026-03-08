@@ -152,8 +152,31 @@
                     <p>名前</p>
                     <p>{{ $contact->last_name }} {{ $contact->first_name }}</p>
 
+                    <p>性別</p>
+                    <p>
+                        @if($contact->gender == 1)
+                        男性
+                        @elseif($contact->gender == 2)
+                        女性
+                        @else
+                        その他
+                        @endif
+                    </p>
+
                     <p>メール</p>
                     <p>{{ $contact->email }}</p>
+
+                    <p>電話番号</p>
+                    <p>{{ $contact->tel }}</p>
+
+                    <p>住所</p>
+                    <p>{{ $contact->address }}</p>
+
+                    <p>建物名</p>
+                    <p>{{ $contact->building }}</p>
+
+                    <p>お問い合わせの種類</p>
+                    <p>{{ $contact->category->content }}</p>
 
                     <p>お問い合わせ内容</p>
                     <p>{{ $contact->detail }}</p>

@@ -44,15 +44,16 @@
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">性別</th>
                     <td class="confirm-table__text">
-                        @if($contact['gender'] == 1)
+
+                        @if(($contact['gender'] ?? null) == 1)
                         男性
-                        @elseif($contact['gender'] == 2)
+                        @elseif(($contact['gender'] ?? null) == 2)
                         女性
                         @else
                         その他
                         @endif
 
-                        <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
+                        <input type="hidden" name="gender" value="{{ $contact['gender'] ?? '' }}">
                     </td>
                 </tr>
 
@@ -94,9 +95,9 @@
                     <th class="confirm-table__header">お問い合わせの種類</th>
                     <td class="confirm-table__text">
 
-                        {{ $category->content }}
+                        {{ $category->content ?? '' }}
 
-                        <input type="hidden" name="category_id" value="{{ $contact['category_id'] }}">
+                        <input type="hidden" name="category_id" value="{{ $contact['category_id'] ?? '' }}">
                     </td>
                 </tr>
 
