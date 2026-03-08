@@ -1,0 +1,138 @@
+.form {
+    width: 650px;
+    margin: 0 auto;
+}
+
+.contact-form__title{
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 40px;
+    color: #8B7969;
+    font-family: serif;
+}
+
+.form__group{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.form__group-title{
+    width: 360px;
+}
+
+.form__group-content{
+    gap: 20px;
+    width: 100%;
+}
+
+.form__label--item {
+    font-size: 14px;
+    color: #8B7969;
+    font-family: "Hiragino Sans", sans-serif;
+}
+
+.form__input--text {
+    display: flex;
+    gap: 20px;
+}
+
+.form__input--text input
+{
+    width: 100%;
+    height: 30px;
+    padding: 0 20px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
+
+.form__input--select select
+{
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+    color: #8B7969;
+}
+
+.form__input--textarea textarea {
+    width: 100%;
+    height: 30px;
+    padding: 10 10px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f4f4f4;
+}
+
+.form__input--radio{
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+}
+
+.form__group-content input[name="tel1"],
+.form__group-content input[name="tel2"],
+.form__group-content input[name="tel3"] {
+    width: 100%;
+    text-align: center;
+}
+
+.form__input--textarea textarea {
+    resize: none;
+    height: 100px;
+}
+
+.form__error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.form__label--required {
+    font-size: 14px;
+    color: red;
+    margin-left: 4px;
+}
+
+.contact-form__button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.contact-form__button-submit {
+    background-color: #8B7969;
+    color: white;
+    padding: 10px 40px;
+    border: none;
+    cursor: pointer;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8B7969;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form__input--select {
+    position: relative;
+}
+
+.form__input--select::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8B7969;
+    pointer-events: none;
+}

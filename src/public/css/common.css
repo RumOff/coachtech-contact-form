@@ -1,0 +1,25 @@
+.header {
+    border-bottom: 1px solid #E0DFDE;
+}
+
+.header__inner {
+    margin: 0 auto;
+    padding: 10px 0 0 0;
+    max-width: 1230px;
+    text-align: center;
+}
+
+.header__logo {
+    text-align: center;
+    color: #8B7969;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: serif;
+}
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 300;
+    color: #8B7969;
+}
