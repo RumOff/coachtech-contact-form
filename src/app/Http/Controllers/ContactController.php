@@ -38,8 +38,8 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->action === 'back') {
-            return redirect('/contact')->withInput();
+        if ($request->input('action') === 'back') {
+            return redirect('/')->withInput();
         }
 
         $contact = $request->only([

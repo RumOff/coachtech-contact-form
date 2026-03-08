@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/comfirm.css') }}">
+<link rel="stylesheet" href="{{ asset('css/confirm.css') }}">
 @endsection
 
 @section('content')
@@ -25,8 +25,8 @@
 @endif
 
 <div class="confirm__content">
-    <div class="confirm__heading">
-        <h2>お問い合わせ内容確認</h2>
+    <div class="confirm__title">
+        <h2>Confirm</h2>
     </div>
     <form class="form" action="/confirm/store" method="post">
         @csrf
@@ -112,9 +112,11 @@
         </div>
         <div class="form__button">
             <button class="form__button-submit" type="submit" name="action" value="submit">送信</button>
+
+            <button class="form__button-fix" type="submit" name="action" value="back">修正</button>
         </div>
         <div class="form__button">
-            <button class="form__button-fix" type="submit" name="action" value="back">修正</button>
+            
         </div>
     </form>
 </div>

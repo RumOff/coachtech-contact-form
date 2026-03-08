@@ -84,7 +84,8 @@
 
 .form__input--textarea textarea {
     resize: none;
-    height: 100px;
+    height: 90px;
+    padding: 10px;
 }
 
 .form__error {
@@ -101,7 +102,7 @@
 
 .contact-form__button {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .contact-form__button-submit {
