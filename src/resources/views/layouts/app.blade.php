@@ -25,20 +25,24 @@
         </a>
         <nav>
           <ul class="header-nav">
-            
+
             @if(request()->is('admin*'))
-            @auth
-            <li class="header-nav__item">
-              <form action="/logout" method="post">
-                @csrf
-                <button class="header-nav__button">ログアウト</button>
-              </form>
-            </li>
-            @else
-            <li class="header-nav__item">
-              <a href="/login" class="header-nav__button">ログイン</a>
-            </li>
-            @endauth
+              @auth
+              <li class="header-nav__item">
+                <form action="/logout" method="post">
+                  @csrf
+                  <button class="header-nav__button">ログアウト</button>
+                </form>
+              </li>
+              @endauth
+            @elseif(request()->is('login*'))
+              <li class="header-nav__item">
+                <a href="/register" class="header-nav__button">register</a>
+              </li>
+            @elseif(request()->is('register*'))
+              <li class="header-nav__item">
+                <a href="/login" class="header-nav__button">login</a>
+              </li>
             @endif
 
           </ul>

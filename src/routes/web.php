@@ -14,6 +14,5 @@ Route::middleware('auth')->group(function() {
     Route::get('/admin', [AdminController::class, 'index']);
     Route::delete('/delete/{id}', [AdminController::class, 'destroy']);
     Route::get('/search', [AdminController::class, 'search']);
-    Route::post('/logout', [AdminController::class, 'logout']);
     Route::get('/export', [adminController::class, "export"]);
 });

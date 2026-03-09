@@ -33,3 +33,8 @@ body {
     width: 100%;
     height: 100%;
 }
+
+.form__button{
+    padding-top: 25px;
+    text-align: center;
+}
