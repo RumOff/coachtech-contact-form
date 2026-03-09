@@ -1,3 +1,142 @@
+.admin__content {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.admin__title {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 40px;
+    color: #8B7969;
+    font-family: serif;
+}
+
+.search-form__group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.search-form__item {
+    flex: 1;
+}
+
+.search-form__item input[type="text"] {
+    width: 230px;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.search-form__item input[type="date"],
+.search-form__item select {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.search-form__button-reset {
+    display: inline-block;
+    background-color: #d9c6b5;
+    transparent;
+    border: none;
+    outline: none;
+    /* color: #8B7969; */
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 6px;
+    font-size: 13px;
+    color: white;
+}
+
+.admin__pagination svg {
+    width: 20px;  
+    height: 20px;
+    vertical-align: middle;
+}
+
+.admin__pagination p {
+    display: none;
+}
+
+.admin__utility {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.admin__button-export {
+    background-color: #edeae6;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 6px;
+    font-size: 13px;
+    color: #8B7969;
+    padding: 5px 15px;
+}
+
+.admin-table__inner {
+    width: 100%;
+}
+
+.admin-table__row {
+    height: 50px;
+    border: 1px solid; 
+}
+
+.admin-table__header,
+.admin-table__text {
+    padding: 10px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.admin-table__header {
+    background-color: #8B7969;
+    color: white;
+}
+
+.admin-table__detail {
+    background-color: transparent;
+    border: 1px solid #baa899;
+    padding: 3px 13px;
+    outline: none;
+    color: #baa899;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* 「...」を非表示にする */
+.admin__pagination nav div:last-child span[aria-disabled="true"] {
+    display: none !important;
+}
+
+/* 7番目以降の数字やボタンを隠す（< 1 2 3 4 5 までを表示） */
+.admin__pagination nav div:last-child>span:nth-child(n+7),
+.admin__pagination nav div:last-child>a:nth-child(n+7) {
+    display: none !important;
+}
+
+/* 「次へ（>）」ボタンだけは常に最後にあるので、強制的に表示させる */
+/* Tailwind版の最後の子要素を狙い撃ちします */
+.admin__pagination nav div:last-child a:last-child {
+    display: inline-flex !important;
+}
+
+.search-form__item select,
+.search-form__item input[type="date"] {
+    border: 1px solid #ddd;
+    background-color: #f4f4f4;
+    color: #8B7969;
+    font-size: 14px;
+    appearance: none;
+    cursor: pointer;
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -7,9 +146,61 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modal__inner {
+    position: relative;
     background: #fff;
-    width: 500px;
-    margin: 100px auto;
-    padding: 30px;
+    width: 570px;
+    margin: 50px auto;
+    padding: 40px;
+}
+
+.modal__close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    color: #8B7969;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.modal__content {
+    display: flex;
+    font-size: 14px;
+    margin: 0;
+}
+
+.modal__content--title {
+    padding: 0 25px;
+    width: 250px;
+}
+
+.modal__content--data {
+    width: 100%;
+}
+
+.modal__button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.modal__content--button {
+    background-color: #ba370d;
+    color: #fff;
+    padding: 5px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.modal__content--button-close {
+
 }

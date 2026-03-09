@@ -15,8 +15,8 @@ class AdminController extends Controller
             ->keywordSearch($request->keyword)
             ->genderSearch($request->gender)
             ->categorySearch($request->category_id)
-            ->paginate(7);
-        
+            ->paginate(7)->onEachSide(20);
+                    
         return view('admin.index', compact('categories', 'contacts'));
     }
 

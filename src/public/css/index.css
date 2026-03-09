@@ -69,10 +69,44 @@
     background-color: #f4f4f4;
 }
 
+.radio input {
+    display: none;
+}
+
+.radio span {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+}
+
+.radio span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+}
+
+.radio input:checked+span::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    width: 15px;
+    height: 15px;
+    background: #8b7969;
+    border-radius: 50%;
+    border: none;
+}
+
 .form__input--radio{
     display: flex;
     gap: 40px;
     font-size: 13px;
+    
 }
 
 .form__group-content input[name="tel1"],
@@ -103,14 +137,6 @@
 .contact-form__button {
     text-align: center;
     margin-top: 20px;
-}
-
-.contact-form__button-submit {
-    background-color: #8B7969;
-    color: white;
-    padding: 10px 40px;
-    border: none;
-    cursor: pointer;
 }
 
 input::placeholder,

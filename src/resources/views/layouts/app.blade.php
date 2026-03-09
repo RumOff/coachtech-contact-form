@@ -17,10 +17,10 @@
       <div class="header-utilities">
         <a class="header__logo" href="/">
           @auth
-          FashinablyLate
+          FashionablyLate
           <!-- Attendance Management -->
           @else
-          FashinablyLate
+          FashionablyLate
           @endauth
         </a>
         <nav>

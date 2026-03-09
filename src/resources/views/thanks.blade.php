@@ -1,21 +1,31 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="ja">
 
-@section('content')
-<div class="thanks">
-    <div class="thanks__inner">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coachtech contant form</title>
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
+</head>
 
-        <p class="thanks__message">
-            お問い合わせありがとうございました
-        </p>
+<body>
+    <main>
+        <div class="thanks__container">
+            <div class="thanks__bg">
+                Thank you
+            </div>
 
-        <a href="/" class="thanks__button">
-            HOME
-        </a>
+            <div class="thanks__content">
+                <h1 class="thanks-message">お問い合わせありがとうございました</h1>
+                <div class="form__button">
+                    <a href="/" class="form__button__content form__button--home">Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
 
-        <p class="thanks__bg">
-            Thank you
-        </p>
-
-    </div>
-</div>
-@endsection
+</html>

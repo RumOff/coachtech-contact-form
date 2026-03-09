@@ -23,7 +23,7 @@
                         name="last_name"
                         placeholder="例: 山田"
                         value="{{ old('last_name') }}" />
-                        
+
                     <input type="text"
                         name="first_name"
                         placeholder="例: 太郎"
@@ -50,9 +50,9 @@
 
             <div class="form__group-content">
                 <div class="form__input--radio">
-                    <label><input type="radio" name="gender" value="1" {{ old('gender') == 1 ? 'checked' : '' }}> 男性</label>
-                    <label><input type="radio" name="gender" value="2" {{ old('gender') == 2 ? 'checked' : '' }}> 女性</label>
-                    <label><input type="radio" name="gender" value="3" {{ old('gender') == 3 ? 'checked' : '' }}> その他</label>
+                    <label class="radio"><input type="radio" name="gender" value="1" {{ old('gender') == 1 ? 'checked' : '' }}> <span>男性</span></label>
+                    <label class="radio"><input type="radio" name="gender" value="2" {{ old('gender') == 2 ? 'checked' : '' }}><span>女性</span></label>
+                    <label class="radio"><input type="radio" name="gender" value="3" {{ old('gender') == 3 ? 'checked' : '' }}><span>その他</span></label>
                 </div>
 
                 <div class="form__error">
@@ -211,7 +211,7 @@
         </div>
 
         <div class="contact-form__button">
-            <button class="contact-form__button-submit" type="submit">確認画面</button>
+            <button class="contact-form__button-submit form__button__content" type="submit">確認画面</button>
         </div>
     </form>
 

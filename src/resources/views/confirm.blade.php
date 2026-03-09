@@ -103,7 +103,7 @@
 
                 <tr class="confirm-table__row">
                     <th class="confirm-table__header">お問い合わせ内容</th>
-                    <td class="confirm-table__text">
+                    <td class="confirm-table__text confirm-table__text--detail">
                         {{ $contact['detail'] }}
                         <input type="hidden" name="detail" value="{{ $contact['detail'] }}" />
                     </td>
@@ -111,12 +111,12 @@
             </table>
         </div>
         <div class="form__button">
-            <button class="form__button-submit" type="submit" name="action" value="submit">送信</button>
+            <button class="form__button-submit form__button__content" type="submit" name="action" value="submit">送信</button>
 
             <button class="form__button-fix" type="submit" name="action" value="back">修正</button>
         </div>
         <div class="form__button">
-            
+
         </div>
     </form>
 </div>

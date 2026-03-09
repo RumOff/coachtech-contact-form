@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 @endsection
 
 @section('content')
@@ -65,15 +65,17 @@
                 <input type="date" name="date">
             </div>
 
-            <div class="search-form__button">
-                <button type="submit" class="search-form__button-submit">
+            <div class="search-form__item">
+                <button type="submit" class="search-form__button-submit form__button__content">
                     検索
                 </button>
-
+            </div>
+            <div class="search-form__item">
                 <a href="/admin" class="search-form__button-reset">
                     リセット
                 </a>
             </div>
+            <!-- </div> -->
         </div>
     </form>
 
@@ -104,21 +106,22 @@
         <table class="admin-table__inner">
 
             <tr class="admin-table__row">
-                <th>お名前</th>
-                <th>性別</th>
-                <th>メールアドレス</th>
-                <th>お問い合わせの種類</th>
-                <th></th>
+                <th class="admin-table__header">お名前</th>
+                <th class="admin-table__header">性別</th>
+                <th class=" admin-table__header">メールアドレス</th>
+                <th class="admin-table__header">お問い合わせの種類</th>
+                <th class="admin-table__header"></th>
+
             </tr>
 
             @foreach($contacts as $contact)
-            <tr class="admin-table__row">
+            <tr class=" admin-table__row">
 
-                <td>
+                <td class="admin-table__text">
                     {{ $contact->last_name }} {{ $contact->first_name }}
                 </td>
 
-                <td>
+                <td class="admin-table__text">
                     @if($contact->gender == 1)
                     男性
                     @elseif($contact->gender == 2)
@@ -128,16 +131,16 @@
                     @endif
                 </td>
 
-                <td>
+                <td class="admin-table__text">
                     {{ $contact->email }}
                 </td>
 
-                <td>
+                <td class="admin-table__text">
                     {{ $contact->category->content }}
                 </td>
 
-                <td>
-                    <a href="/admin?keyword={{ request('keyword') }}&modal={{ $contact->id }}" class="admin-table__detail">
+                <td class="admin-table__text">
+                    <a href=" /admin?keyword={{ request('keyword') }}&modal={{ $contact->id }}" class="admin-table__detail">
                         詳細
                     </a>
                 </td>
@@ -147,49 +150,66 @@
             @foreach ($contacts as $contact)
             @if(request('modal') == $contact->id)
             <div class="modal">
-                <div class="modal-content">
+                <div class="modal__inner">
 
-                    <p>名前</p>
-                    <p>{{ $contact->last_name }} {{ $contact->first_name }}</p>
+                    <a class="modal__close-button" href="/admin">&times;</a>
 
-                    <p>性別</p>
-                    <p>
-                        @if($contact->gender == 1)
-                        男性
-                        @elseif($contact->gender == 2)
-                        女性
-                        @else
-                        その他
-                        @endif
-                    </p>
+                    <div class="modal__content">
+                        <p class="modal__content--title">名前</p>
+                        <p class="modal__content--data">{{ $contact->last_name }} {{ $contact->first_name }}</p>
+                    </div>
 
-                    <p>メール</p>
-                    <p>{{ $contact->email }}</p>
+                    <div class="modal__content">
+                        <p class="modal__content--title">性別</p>
+                        <p class="modal__content--data">
+                            @if($contact->gender == 1)
+                            男性
+                            @elseif($contact->gender == 2)
+                            女性
+                            @else
+                            その他
+                            @endif
+                        </p>
+                    </div>
 
-                    <p>電話番号</p>
-                    <p>{{ $contact->tel }}</p>
+                    <div class=" modal__content">
+                        <p class="modal__content--title">メール</p>
+                        <p class=" modal__content--data">{{ $contact->email }}</p>
+                    </div>
 
-                    <p>住所</p>
-                    <p>{{ $contact->address }}</p>
+                    <div class=" modal__content">
+                        <p class="modal__content--title">電話番号</p>
+                        <p class=" modal__content--data">{{ $contact->tel }}</p>
+                    </div>
 
-                    <p>建物名</p>
-                    <p>{{ $contact->building }}</p>
+                    <div class=" modal__content">
+                        <p class="modal__content--title">住所</p>
+                        <p class=" modal__content--data">{{ $contact->address }}</p>
+                    </div>
 
-                    <p>お問い合わせの種類</p>
-                    <p>{{ $contact->category->content }}</p>
+                    <div class=" modal__content">
+                        <p class="modal__content--title">建物名</p>
+                        <p class=" modal__content--data">{{ $contact->building }}</p>
+                    </div>
 
-                    <p>お問い合わせ内容</p>
-                    <p>{{ $contact->detail }}</p>
+                    <div class=" modal__content">
+                        <p class="modal__content--title">お問い合わせの種類</p>
+                        <p class=" modal__content--data">{{ $contact->category->content }}</p>
+                    </div>
 
-                    <form action="/delete/{{ $contact->id }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="hidden" name="keyword" value="{{ request('keyword') }}">
-                        <button>削除</button>
-                    </form>
+                    <div class=" modal__content">
+                        <p class="modal__content--title">お問い合わせ内容</p>
+                        <p class=" modal__content--data">{{ $contact->detail }}</p>
+                    </div>
 
-                    <a href="/admin">閉じる</a>
-
+                    <div class="modal__button-container">
+                        <form action="/delete/{{ $contact->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+                            <button class="modal__content--button">削除</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             @endif

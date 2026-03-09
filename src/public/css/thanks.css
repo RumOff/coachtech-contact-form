@@ -1,0 +1,43 @@
+.thanks__container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thanks__bg {
+    position: absolute;
+    font-size: 15vw;
+    color: #f0f0f0;
+    white-space: nowrap;
+    z-index: 1;
+    user-select: none;
+}
+
+.thanks__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.thanks-message {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #8B7969
+}
+
+.form__button {
+    background-color: #8B7969;
+    
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.form__button--home {
+    text-decoration: none;
+}
+
+.home-button:hover {
+    opacity: 0.8;
+}
