@@ -32,7 +32,7 @@
 
                 <div class="form__error">
                     @error('last_name')
-                    <div class="error">{{ $message }}</div>
+                    <p>{{ $message }}</p>
                     @enderror
 
                     @error('first_name')
@@ -101,27 +101,23 @@
                     -
                     <input type="text"
                         name="tel2"
-                        maxlength="4"
+                        maxlength="5"
                         placeholder="1234"
                         value="{{ old('tel2') }}" />
                     -
                     <input type="text"
                         name="tel3"
-                        maxlength="4"
+                        maxlength="5"
                         placeholder="5678"
                         value="{{ old('tel3') }}" />
                 </div>
 
                 <div class="form__error">
-                    @error('tel1')
-                    <p>{{ $message }}</p>
-                    @enderror
-                    @error('tel2')
-                    <p>{{ $message }}</p>
-                    @enderror
-                    @error('tel3')
-                    <p>{{ $message }}</p>
-                    @enderror
+                    @if ($errors->has('tel1') || $errors->has('tel2') || $errors->has('tel3'))
+                    <p>{{ $errors->first('tel1') ?: ($errors->first('tel2') ?: $errors->first('tel3')) }}</p>
+                    @endif
+
+
                 </div>
             </div>
         </div>

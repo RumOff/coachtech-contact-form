@@ -35,8 +35,8 @@
             <div class="search-form__item">
                 <input
                     type="text"
-                    name="keyword" p
-                    laceholder="名前やメールアドレスを入力してください"
+                    name="keyword" 
+                    placeholder="名前やメールアドレスを入力してください"
                     value="{{ request('keyword') }}">
             </div>
 
@@ -54,7 +54,7 @@
                     <option value="">お問い合わせの種類</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">
-                        {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ request('category_id') == $category->id ? 'selected' : '' }}
                         {{ $category->content }}
                     </option>
                     @endforeach
@@ -75,7 +75,6 @@
                     リセット
                 </a>
             </div>
-            <!-- </div> -->
         </div>
     </form>
 
@@ -111,7 +110,6 @@
                 <th class=" admin-table__header">メールアドレス</th>
                 <th class="admin-table__header">お問い合わせの種類</th>
                 <th class="admin-table__header"></th>
-
             </tr>
 
             @foreach($contacts as $contact)

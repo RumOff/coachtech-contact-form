@@ -22,7 +22,7 @@
 }
 
 .search-form__item input[type="text"] {
-    width: 230px;
+    width: 285px;
     padding: 8px;
     border: 1px solid #ddd;
 }
@@ -201,6 +201,7 @@
     cursor: pointer;
 }
 
-.modal__content--button-close {
-
+.admin-table__row:hover {
+    background-color: #ccdada49;
+    transition: background-color 0.3s ease;
 }
