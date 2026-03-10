@@ -25,7 +25,18 @@
 
 <br>
 
-## 開発環境
+## 開発環境(VSCode)
+本プロジェクトは **Dev Containers** を使用して開発しています。
+VSCodeで以下の手順を実行するとコンテナに接続できます。
+
+1. VSCodeでプロジェクトを開く
+2. 左下の「><」または Ctrl+Shift+P を押下
+3. 「Dev Containers: Attach to Running Container」を選択
+4. `php` コンテナにアタッチ
+
+<br>
+
+## 開発環境(URL)
 
 - お問い合わせ画面: http://localhost/
 - ユーザー登録: http://localhost/register
