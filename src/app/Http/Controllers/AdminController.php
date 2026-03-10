@@ -16,7 +16,8 @@ class AdminController extends Controller
             ->genderSearch($request->gender)
             ->categorySearch($request->category_id)
             ->dateSearch($request->date)
-            ->paginate(7)->onEachSide(20);
+            ->paginate(7)->onEachSide(20)
+            ->withQueryString();;
                     
         return view('admin.index', compact('categories', 'contacts'));
     }
@@ -25,7 +26,7 @@ class AdminController extends Controller
     {
         Contact::findOrFail($id)->delete();
 
-        return redirect('/admin?keyword=' . $request->keyword);
+        return redirect('/admin?keyword=' . $request->keyword . '&page=' . $request->page);
     }
 
     public function export(Request $request)

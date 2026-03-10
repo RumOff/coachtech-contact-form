@@ -35,7 +35,7 @@
             <div class="search-form__item">
                 <input
                     type="text"
-                    name="keyword" 
+                    name="keyword"
                     placeholder="名前やメールアドレスを入力してください"
                     value="{{ request('keyword') }}">
             </div>
@@ -43,6 +43,7 @@
             <div class="search-form__item">
                 <select name="gender">
                     <option value="">性別</option>
+                    <option value="">全て</option>
                     <option value="1">男性</option>
                     <option value="2">女性</option>
                     <option value="3">その他</option>
@@ -53,8 +54,7 @@
                 <select name="category_id">
                     <option value="">お問い合わせの種類</option>
                     @foreach($categories as $category)
-                    <option value="{{ $category->id }}">
-                        {{ request('category_id') == $category->id ? 'selected' : '' }}
+                    <option value="{{ $category->id }}{{ request('category_id') == $category->id ? 'selected' : '' }}">
                         {{ $category->content }}
                     </option>
                     @endforeach
@@ -66,6 +66,7 @@
             </div>
 
             <div class="search-form__item">
+                <input type="hidden" name="page" value="{{ request('page') }}">
                 <button type="submit" class="search-form__button-submit form__button__content">
                     検索
                 </button>
@@ -138,7 +139,7 @@
                 </td>
 
                 <td class="admin-table__text">
-                    <a href=" /admin?keyword={{ request('keyword') }}&modal={{ $contact->id }}" class="admin-table__detail">
+                    <a href="{{ request()->fullUrlWithQuery(['modal' => $contact->id, 'page' => request('page', 1)]) }}" class="admin-table__detail">
                         詳細
                     </a>
                 </td>
@@ -150,7 +151,7 @@
             <div class="modal">
                 <div class="modal__inner">
 
-                    <a class="modal__close-button" href="/admin">&times;</a>
+                    <a class="modal__close-button" href="{{ request()->fullUrlWithQuery(['modal' => null]) }}">&times;</a>
 
                     <div class="modal__content">
                         <p class="modal__content--title">名前</p>
@@ -204,6 +205,7 @@
                         <form action="/delete/{{ $contact->id }}" method="post">
                             @csrf
                             @method('DELETE')
+                            <input type="hidden" name="page" value="{{ request('page') }}">
                             <input type="hidden" name="keyword" value="{{ request('keyword') }}">
                             <button class="modal__content--button">削除</button>
                         </form>
